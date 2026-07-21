@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Validate Python and JSON
+        run: |
+          python - <<'PY'
+          import ast
+          import json
+          from pathlib import Path
+
+          root = Path("custom_components/kueng_sauna")
+          for path in root.rglob("*.py"):
+              ast.parse(path.read_text(), filename=str(path))
+          for path in [*root.rglob("*.json"), Path("hacs.json")]:
+              json.loads(path.read_text())
+          PY
+      - name: Run contract tests
+        run: python -m unittest discover -s tests -v

@@ -1,0 +1,30 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Mit Küng Sauna verbinden",
+        "description": "Gib den lokalen Hostnamen oder die IP-Adresse der Saunasteuerung ein.",
+        "data": {"host": "Host"}
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zur Saunasteuerung nicht möglich",
+      "invalid_host": "Hostnamen oder IP-Adresse ohne Pfad eingeben",
+      "unknown": "Unerwarteter Fehler"
+    },
+    "abort": {
+      "already_configured": "Diese Saunasteuerung ist bereits eingerichtet"
+    }
+  },
+  "entity": {
+    "climate": {"sauna": {"name": ""}},
+    "switch": {"eco_mode": {"name": "Eco-Modus"}},
+    "sensor": {"remaining_time": {"name": "Restlaufzeit"}},
+    "binary_sensor": {
+      "remote_access": {"name": "Fernstartfreigabe"},
+      "key_lock": {"name": "Tastensperre"},
+      "operation_lock": {"name": "Betriebssperre"},
+      "event": {"name": "Störung"}
+    }
+  }
+}

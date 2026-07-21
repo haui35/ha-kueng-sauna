@@ -1,0 +1,30 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Küng Sauna",
+        "description": "Enter the local host name or IP address of the sauna controller.",
+        "data": {"host": "Host"}
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to the sauna controller",
+      "invalid_host": "Enter a host name or IP address without a path",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This sauna controller is already configured"
+    }
+  },
+  "entity": {
+    "climate": {"sauna": {"name": ""}},
+    "switch": {"eco_mode": {"name": "Eco mode"}},
+    "sensor": {"remaining_time": {"name": "Remaining time"}},
+    "binary_sensor": {
+      "remote_access": {"name": "Remote access"},
+      "key_lock": {"name": "Key lock"},
+      "operation_lock": {"name": "Operation lock"},
+      "event": {"name": "Event"}
+    }
+  }
+}

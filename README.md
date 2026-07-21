@@ -111,4 +111,3 @@ Küng Wellness AG. Product and company names belong to their respective owners.
 ## License
 
 MIT — see [LICENSE](LICENSE).
-

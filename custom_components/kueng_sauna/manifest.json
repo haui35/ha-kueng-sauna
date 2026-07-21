@@ -1,0 +1,12 @@
+{
+  "domain": "kueng_sauna",
+  "name": "Küng Sauna",
+  "codeowners": ["@haui35"],
+  "config_flow": true,
+  "documentation": "https://github.com/haui35/ha-kueng-sauna",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/haui35/ha-kueng-sauna/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
