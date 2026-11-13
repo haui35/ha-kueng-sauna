@@ -43,7 +43,7 @@ class KuengSaunaClimate(KuengSaunaEntity, ClimateEntity):
 
     _attr_name = None
     _attr_translation_key = "sauna"
-    _attr_temperature_unit = UnitOfTemperature.CELSIUS
+    _attr_native_temperature_unit = UnitOfTemperature.CELSIUS
     _attr_hvac_modes = [HVACMode.OFF, HVACMode.HEAT]
     _attr_min_temp = MIN_TEMPERATURE
     _attr_max_temp = MAX_TEMPERATURE
@@ -65,11 +65,11 @@ class KuengSaunaClimate(KuengSaunaEntity, ClimateEntity):
         self._attr_unique_id = f"{self._unique_prefix}_climate"
 
     @property
-    def current_temperature(self) -> float | None:
+    def native_current_temperature(self) -> float | None:
         return self.status.get("operation", {}).get("currTemp")
 
     @property
-    def target_temperature(self) -> float | None:
+    def native_target_temperature(self) -> float | None:
         return self.status.get("operation", {}).get("targetTemp")
 
     @property
@@ -93,8 +93,8 @@ class KuengSaunaClimate(KuengSaunaEntity, ClimateEntity):
     def hvac_action(self) -> HVACAction:
         if self.hvac_mode == HVACMode.OFF:
             return HVACAction.OFF
-        current = self.current_temperature
-        target = self.target_temperature
+        current = self.native_current_temperature
+        target = self.native_target_temperature
         if current is not None and target is not None and current < target:
             return HVACAction.HEATING
         return HVACAction.IDLE

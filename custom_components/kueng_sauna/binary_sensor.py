@@ -9,6 +9,7 @@ from typing import Any
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
     BinarySensorEntity,
+    BinarySensorEntityDescription,
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -20,13 +21,10 @@ from .entity import KuengSaunaEntity
 
 
 @dataclass(frozen=True, kw_only=True)
-class KuengBinarySensorDescription:
+class KuengBinarySensorDescription(BinarySensorEntityDescription):
     """Describe a diagnostic binary sensor."""
 
-    key: str
-    translation_key: str
     value_fn: Callable[[dict[str, Any]], bool]
-    device_class: BinarySensorDeviceClass | None = None
 
 
 DESCRIPTIONS = (
@@ -79,8 +77,6 @@ class KuengBinarySensor(KuengSaunaEntity, BinarySensorEntity):
     def __init__(self, coordinator, description: KuengBinarySensorDescription) -> None:
         super().__init__(coordinator)
         self.entity_description = description
-        self._attr_translation_key = description.translation_key
-        self._attr_device_class = description.device_class
         self._attr_unique_id = f"{self._unique_prefix}_{description.key}"
 
     @property
